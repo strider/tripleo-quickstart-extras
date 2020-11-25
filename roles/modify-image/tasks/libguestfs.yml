@@ -49,6 +49,7 @@
     # FIXME(ykarel) LIBGUESTFS_BACKEND_SETTINGS can be removed once
     # https://bugs.launchpad.net/tripleo/+bug/1743749 is completely fixed.
     LIBGUESTFS_BACKEND_SETTINGS: "{{ lookup( 'env', 'LIBGUESTFS_BACKEND_SETTINGS')|default('force_tcg', true) }}"
+    LIBGUESTFS_PATH: "/usr/local/src/appliance"
   args:
     chdir: "{{ modify_image_working_dir }}"
   changed_when: true
@@ -61,6 +62,7 @@
     {{ modify_image_working_dir }}
   environment:
     LIBGUESTFS_BACKEND: direct
+    LIBGUESTFS_PATH: "/usr/local/src/appliance"
   args:
     chdir: "{{ modify_image_working_dir }}"
   with_items: "{{ modify_image_extract_list }}"
